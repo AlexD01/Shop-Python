@@ -1,0 +1,32 @@
+﻿
+{% if product%}
+<table border="1">
+    {% for c in product %}
+
+        
+            <tr>
+                <td >
+                    <p>Name: {{ c.name }} </p>
+                </td>
+                <td>
+                    <p>Price: {{ c.price }} </p>
+                </td>
+                <td>
+                    <img src= {{ c.photo.url }} height="100" width="100" />
+                </td>
+                <td>
+                    <p>Count: {{ c.count }} </p>
+                </td>
+                <td>
+                    <p><a href="{% url 'cart:cart_add' c.id %}">Add to Cart </a></p>  
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5"><p>Detail: {{ c.detail }} </p></td>
+            </tr>
+  
+
+    {% endfor %}
+</table>
+{% endif %}
+<a href="{% url 'app:index'%}">Back</a>

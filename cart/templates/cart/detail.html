@@ -1,0 +1,40 @@
+
+  Cart
+  <table >
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th></th>
+        <th></th>
+        <th>Count</th>
+        <th>Price</th>
+        <th>Total price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in cart %}
+        {% with product=item.product %}
+          <tr>
+            <td><a href="{% url 'app:detail' product.id %}">{{ product.name }} </a></td>
+
+            <td><a href="{% url 'cart:cart_add' product.id %}">Add 1</a></td>
+
+            <td><a href="{% url 'cart:cart_remove' product.id %}">Remove</a></td>
+            <td>
+              {{ item.quantity }}
+            </td>
+            <td class="num">${{ item.price }}</td>
+            <td class="num">${{ item.total_price }}</td>
+          </tr>
+        {% endwith %}
+      {% endfor %}
+      <tr class="total">
+        <td>Total</td>
+        <td colspan="4"></td>
+        <td class="num">${{ cart.get_total_price }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="text-right">
+    <a href="{% url 'app:index' %}" class="button light">Back</a>
+  </p>
